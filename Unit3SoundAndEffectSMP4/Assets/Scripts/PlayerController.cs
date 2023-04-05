@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool doubleJump = true;
     public bool gameOver;
+    public bool doubleSpeed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,17 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetTrigger("Jump_trig");
             playerAudio.PlayOneShot(jumpSound, 1.0f);
             doubleJump = false;
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            doubleSpeed = true;
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
+        }
+        else if(doubleSpeed)
+        {
+            doubleSpeed = false;
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
         }
     }
 
